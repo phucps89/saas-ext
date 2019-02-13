@@ -123,7 +123,7 @@ PHP_METHOD(Saas_Cores_Index, __construct) {
 		zephir_json_decode(&arrLicencePath, &_8$$7, 0 );
 	}
 	if (!(zephir_fast_in_array(pathToKey, &arrLicencePath TSRMLS_CC))) {
-		zephir_array_append(&arrLicencePath, pathToKey, PH_SEPARATE, "saas/Cores/Index.zep", 40);
+		zephir_array_append(&arrLicencePath, pathToKey, PH_SEPARATE, "saas/Cores/Index.zep", 41);
 		ZEPHIR_INIT_VAR(&_9$$8);
 		zephir_json_encode(&_9$$8, &arrLicencePath, 0 );
 		ZEPHIR_CALL_FUNCTION(&dataLocLicPath, "base64_encode", NULL, 4, &_9$$8);
@@ -283,7 +283,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_11 = NULL;
-	zval *pathToKey, pathToKey_sub, __$true, app, serial, serialDecode, moduleName, today, expire, today_time, expire_time, _14, _15, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3, _9$$3, _10$$3, _7$$4, _8$$4, _12$$5, _13$$5;
+	zval *pathToKey, pathToKey_sub, __$true, app, serial, serialDecode, moduleName, e, today, expire, today_time, expire_time, _14, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3, _9$$3, _10$$3, _7$$4, _8$$4, _12$$5, _13$$5;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&pathToKey_sub);
@@ -292,12 +292,12 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 	ZVAL_UNDEF(&serial);
 	ZVAL_UNDEF(&serialDecode);
 	ZVAL_UNDEF(&moduleName);
+	ZVAL_UNDEF(&e);
 	ZVAL_UNDEF(&today);
 	ZVAL_UNDEF(&expire);
 	ZVAL_UNDEF(&today_time);
 	ZVAL_UNDEF(&expire_time);
 	ZVAL_UNDEF(&_14);
-	ZVAL_UNDEF(&_15);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
@@ -336,7 +336,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 		zephir_json_decode(&_3$$3, &_4$$3, zephir_get_intval(&__$true) );
 		zephir_update_property_zval(&app, SL("licence_config"), &_3$$3);
 		zephir_read_property(&_5$$3, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_6$$3, &_5$$3, SL("service_code"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 95 TSRMLS_CC);
+		zephir_array_fetch_string(&_6$$3, &_5$$3, SL("service_code"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 96 TSRMLS_CC);
 		if (!ZEPHIR_IS_EQUAL(&_6$$3, &moduleName)) {
 			ZEPHIR_INIT_VAR(&_7$$4);
 			object_init_ex(&_7$$4, saas_cores_exceptions_licenceinvalidexception_ce);
@@ -344,7 +344,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 			ZVAL_STRING(&_8$$4, "This licence can not apply to this product");
 			ZEPHIR_CALL_METHOD(NULL, &_7$$4, "__construct", NULL, 9, &_8$$4);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_throw_exception_debug(&_7$$4, "saas/Cores/Index.zep", 96 TSRMLS_CC);
+			zephir_throw_exception_debug(&_7$$4, "saas/Cores/Index.zep", 97 TSRMLS_CC);
 			goto try_end_1;
 
 		}
@@ -354,7 +354,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 		zephir_check_call_status_or_jump(try_end_1);
 		zephir_read_property(&_10$$3, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&expire);
-		zephir_array_fetch_string(&expire, &_10$$3, SL("expired"), PH_NOISY, "saas/Cores/Index.zep", 100 TSRMLS_CC);
+		zephir_array_fetch_string(&expire, &_10$$3, SL("expired"), PH_NOISY, "saas/Cores/Index.zep", 101 TSRMLS_CC);
 		ZEPHIR_CALL_FUNCTION(&today_time, "strtotime", &_11, 11, &today);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_CALL_FUNCTION(&expire_time, "strtotime", &_11, 11, &expire);
@@ -365,7 +365,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 			zephir_read_property(&_13$$5, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(NULL, &_12$$5, "__construct", NULL, 12, &_13$$5);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_throw_exception_debug(&_12$$5, "saas/Cores/Index.zep", 106 TSRMLS_CC);
+			zephir_throw_exception_debug(&_12$$5, "saas/Cores/Index.zep", 107 TSRMLS_CC);
 			goto try_end_1;
 
 		}
@@ -376,17 +376,26 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 		ZEPHIR_INIT_VAR(&_14);
 		ZVAL_OBJ(&_14, EG(exception));
 		Z_ADDREF_P(&_14);
-		ZEPHIR_INIT_VAR(&_15);
 		if (zephir_instance_of_ev(&_14, spl_ce_RuntimeException TSRMLS_CC)) {
 			zend_clear_exception(TSRMLS_C);
-			ZEPHIR_CPY_WRT(&_15, &_14);
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 109);
+			ZEPHIR_CPY_WRT(&e, &_14);
+			if (zephir_instance_of_ev(&e, saas_cores_exceptions_licenceexception_ce TSRMLS_CC)) {
+				zephir_throw_exception_debug(&e, "saas/Cores/Index.zep", 111 TSRMLS_CC);
+				ZEPHIR_MM_RESTORE();
+				return;
+			}
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 113);
 			return;
 		} else {
 			if (zephir_instance_of_ev(&_14, zend_exception_get_default(TSRMLS_C) TSRMLS_CC)) {
 				zend_clear_exception(TSRMLS_C);
-				ZEPHIR_CPY_WRT(&_15, &_14);
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 109);
+				ZEPHIR_CPY_WRT(&e, &_14);
+				if (zephir_instance_of_ev(&e, saas_cores_exceptions_licenceexception_ce TSRMLS_CC)) {
+					zephir_throw_exception_debug(&e, "saas/Cores/Index.zep", 111 TSRMLS_CC);
+					ZEPHIR_MM_RESTORE();
+					return;
+				}
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 113);
 				return;
 			}
 		}
@@ -487,7 +496,7 @@ PHP_METHOD(Saas_Cores_Index, getLicenceId) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&config);
 	zephir_json_decode(&config, &_3, zephir_get_intval(&__$true) );
-	zephir_array_fetch_string(&_4, &config, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 144 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &config, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 148 TSRMLS_CC);
 	RETURN_CTOR(&_4);
 
 }
@@ -599,7 +608,7 @@ PHP_METHOD(Saas_Cores_Index, getUniqueMachineID) {
 		zephir_check_call_status();
 		if (!ZEPHIR_IS_FALSE_IDENTICAL(&_16$$7)) {
 			ZEPHIR_OBS_NVAR(&result);
-			zephir_array_fetch_string(&result, _SERVER, SL("HTTP_HOST"), PH_NOISY, "saas/Cores/Index.zep", 170 TSRMLS_CC);
+			zephir_array_fetch_string(&result, _SERVER, SL("HTTP_HOST"), PH_NOISY, "saas/Cores/Index.zep", 174 TSRMLS_CC);
 		}
 	}
 	ZEPHIR_INIT_VAR(&_17);
