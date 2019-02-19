@@ -60,7 +60,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, start) {
 
 	ZEPHIR_INIT_VAR(&ins);
 	object_init_ex(&ins, saas_cores_saassystem_ce);
-	ZEPHIR_CALL_METHOD(NULL, &ins, "__construct", NULL, 35, basePath);
+	ZEPHIR_CALL_METHOD(NULL, &ins, "__construct", NULL, 36, basePath);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -80,17 +80,17 @@ PHP_METHOD(Saas_Cores_SaasSystem, __construct) {
 
 
 
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "checkenv", NULL, 36);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "checkenv", NULL, 37);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("_basePath"), basePath);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "clear", NULL, 37);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "clear", NULL, 38);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 38);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "init", NULL, 39);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "login", NULL, 39);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "login", NULL, 40);
 	zephir_check_call_status();
 	if (zephir_is_true(&_0)) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "main", NULL, 40);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "main", NULL, 41);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
@@ -118,7 +118,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, checkEnv) {
 	{
 		ZEPHIR_INIT_NVAR(&ext);
 		ZVAL_COPY(&ext, _1);
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "extension_loaded", &_3, 41, &ext);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "extension_loaded", &_3, 42, &ext);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_FALSE(&_2$$3)) {
 			ZEPHIR_INIT_NVAR(&_4$$4);
@@ -213,7 +213,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, login) {
 	ZVAL_STRING(&_0, "php://stdin");
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "r");
-	ZEPHIR_CALL_FUNCTION(&handle, "fopen", NULL, 42, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&handle, "fopen", NULL, 43, &_0, &_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZEPHIR_GET_CONSTANT(&_0, "PHP_EOL");
@@ -221,14 +221,14 @@ PHP_METHOD(Saas_Cores_SaasSystem, login) {
 	ZEPHIR_CONCAT_SV(&_2, "Please login to SAAS System!", &_0);
 	zend_print_zval(&_2, 0);
 	php_printf("%s", "Username: ");
-	ZEPHIR_CALL_FUNCTION(&_3, "fgets", NULL, 43, &handle);
+	ZEPHIR_CALL_FUNCTION(&_3, "fgets", NULL, 44, &handle);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&username);
 	zephir_fast_trim(&username, &_3, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 	zephir_fclose(&handle TSRMLS_CC);
 	php_printf("%s", "Password: ");
 	ZVAL_BOOL(&_5, 0);
-	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getpassword", NULL, 44, &_5);
+	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getpassword", NULL, 45, &_5);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&password);
 	zephir_fast_trim(&password, &_4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
@@ -262,7 +262,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, login) {
 	ZVAL_LONG(&_12, zephir_fast_count_int(&fields TSRMLS_CC));
 	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_11, 10, &ch, &_10, &_12);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_13, "http_build_query", NULL, 45, &fields);
+	ZEPHIR_CALL_FUNCTION(&_13, "http_build_query", NULL, 46, &fields);
 	zephir_check_call_status();
 	ZVAL_LONG(&_10, 10015);
 	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_11, 10, &ch, &_10, &_13);
@@ -336,16 +336,16 @@ PHP_METHOD(Saas_Cores_SaasSystem, getPassword) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "stty -g");
-	ZEPHIR_CALL_FUNCTION(&oldStyle, "shell_exec", &_1, 27, &_0);
+	ZEPHIR_CALL_FUNCTION(&oldStyle, "shell_exec", &_1, 28, &_0);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_FALSE_IDENTICAL(stars)) {
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, "stty -echo");
-		ZEPHIR_CALL_FUNCTION(NULL, "shell_exec", &_1, 27, &_2$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "shell_exec", &_1, 28, &_2$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_2$$3);
 		ZEPHIR_GET_CONSTANT(&_2$$3, "STDIN");
-		ZEPHIR_CALL_FUNCTION(&_3$$3, "fgets", NULL, 43, &_2$$3);
+		ZEPHIR_CALL_FUNCTION(&_3$$3, "fgets", NULL, 44, &_2$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_4$$3);
 		ZVAL_STRING(&_4$$3, "\n");
@@ -354,7 +354,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, getPassword) {
 	} else {
 		ZEPHIR_INIT_VAR(&_5$$4);
 		ZVAL_STRING(&_5$$4, "stty -icanon -echo min 1 time 0");
-		ZEPHIR_CALL_FUNCTION(NULL, "shell_exec", &_1, 27, &_5$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "shell_exec", &_1, 28, &_5$$4);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&password);
 		ZVAL_STRING(&password, "");
@@ -364,12 +364,12 @@ PHP_METHOD(Saas_Cores_SaasSystem, getPassword) {
 			}
 			ZEPHIR_INIT_NVAR(&_6$$5);
 			ZEPHIR_GET_CONSTANT(&_6$$5, "STDIN");
-			ZEPHIR_CALL_FUNCTION(&kytu, "fgetc", &_7, 46, &_6$$5);
+			ZEPHIR_CALL_FUNCTION(&kytu, "fgetc", &_7, 47, &_6$$5);
 			zephir_check_call_status();
 			if (ZEPHIR_IS_STRING_IDENTICAL(&kytu, "\n")) {
 				break;
 			} else {
-				ZEPHIR_CALL_FUNCTION(&_8$$7, "ord", &_9, 47, &kytu);
+				ZEPHIR_CALL_FUNCTION(&_8$$7, "ord", &_9, 48, &kytu);
 				zephir_check_call_status();
 				if (ZEPHIR_IS_LONG_IDENTICAL(&_8$$7, 127)) {
 					if (zephir_fast_strlen_ev(&password) > 0) {
@@ -397,7 +397,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, getPassword) {
 	}
 	ZEPHIR_INIT_VAR(&_17);
 	ZEPHIR_CONCAT_SV(&_17, "stty ", &oldStyle);
-	ZEPHIR_CALL_FUNCTION(NULL, "shell_exec", &_1, 27, &_17);
+	ZEPHIR_CALL_FUNCTION(NULL, "shell_exec", &_1, 28, &_17);
 	zephir_check_call_status();
 	RETURN_CCTOR(&password);
 
@@ -415,7 +415,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, clear) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "clear");
-	ZEPHIR_CALL_FUNCTION(NULL, "system", NULL, 48, &_0);
+	ZEPHIR_CALL_FUNCTION(NULL, "system", NULL, 49, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -455,9 +455,9 @@ PHP_METHOD(Saas_Cores_SaasSystem, main) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "clear", NULL, 37);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "clear", NULL, 38);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "logo", NULL, 49);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "logo", NULL, 50);
 	zephir_check_call_status();
 	zend_print_zval(&_0, 0);
 	ZEPHIR_INIT_VAR(&_1);
@@ -503,9 +503,9 @@ PHP_METHOD(Saas_Cores_SaasSystem, main) {
 		ZVAL_STRING(&_12$$3, "php://stdin");
 		ZEPHIR_INIT_NVAR(&_13$$3);
 		ZVAL_STRING(&_13$$3, "r");
-		ZEPHIR_CALL_FUNCTION(&handle, "fopen", &_14, 42, &_12$$3, &_13$$3);
+		ZEPHIR_CALL_FUNCTION(&handle, "fopen", &_14, 43, &_12$$3, &_13$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&select, "fgets", &_15, 43, &handle);
+		ZEPHIR_CALL_FUNCTION(&select, "fgets", &_15, 44, &handle);
 		zephir_check_call_status();
 		zephir_fclose(&handle TSRMLS_CC);
 		if (ZEPHIR_IS_LONG(&select, 0)) {
@@ -514,7 +514,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, main) {
 			zephir_exit(&_16$$4);
 		}
 		if (ZEPHIR_IS_LONG(&select, 1)) {
-			ZEPHIR_CALL_METHOD(NULL, this_ptr, "downloadlicenceprocess", &_17, 50);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "downloadlicenceprocess", &_17, 51);
 			zephir_check_call_status();
 			break;
 		}
@@ -532,7 +532,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, main) {
 			zend_print_zval(&_22$$6, 0);
 		}
 	}
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "main", NULL, 40);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "main", NULL, 41);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -606,7 +606,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 	ZEPHIR_MM_GROW();
 
 	php_printf("%s", "Loading available packages...");
-	ZEPHIR_CALL_METHOD(&listPackage, this_ptr, "getavailablepackages", NULL, 51);
+	ZEPHIR_CALL_METHOD(&listPackage, this_ptr, "getavailablepackages", NULL, 52);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&validSelection);
 	zephir_create_array(&validSelection, 2, 0 TSRMLS_CC);
@@ -616,12 +616,12 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_LONG(&_0, zephir_fast_count_int(&listPackage TSRMLS_CC));
 	zephir_array_fast_append(&validSelection, &_0);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "clear", NULL, 37);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "clear", NULL, 38);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "=");
 	ZVAL_LONG(&_1, 80);
-	ZEPHIR_CALL_FUNCTION(&_2, "str_repeat", &_3, 52, &_0, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "str_repeat", &_3, 53, &_0, &_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZEPHIR_GET_CONSTANT(&_0, "PHP_EOL");
@@ -631,7 +631,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 	ZEPHIR_INIT_VAR(&_5);
 	ZVAL_STRING(&_5, "0. Back");
 	ZVAL_LONG(&_1, 77);
-	ZEPHIR_CALL_FUNCTION(&_6, "str_pad", &_7, 53, &_5, &_1);
+	ZEPHIR_CALL_FUNCTION(&_6, "str_pad", &_7, 54, &_5, &_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_8);
 	ZEPHIR_CONCAT_SVS(&_8, "= ", &_6, "=\n");
@@ -655,7 +655,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 		ZEPHIR_INIT_LNVAR(_16$$3);
 		ZEPHIR_CONCAT_VSVSV(&_16$$3, &_12$$3, ". ", &_14$$3, " - ", &_15$$3);
 		ZVAL_LONG(&_17$$3, 77);
-		ZEPHIR_CALL_FUNCTION(&_18$$3, "str_pad", &_7, 53, &_16$$3, &_17$$3);
+		ZEPHIR_CALL_FUNCTION(&_18$$3, "str_pad", &_7, 54, &_16$$3, &_17$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_19$$3);
 		ZEPHIR_CONCAT_SVS(&_19$$3, "= ", &_18$$3, "=\n");
@@ -666,7 +666,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 	ZEPHIR_INIT_NVAR(&_5);
 	ZVAL_STRING(&_5, "=");
 	ZVAL_LONG(&_1, 80);
-	ZEPHIR_CALL_FUNCTION(&_20, "str_repeat", &_3, 52, &_5, &_1);
+	ZEPHIR_CALL_FUNCTION(&_20, "str_repeat", &_3, 53, &_5, &_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_5);
 	ZEPHIR_GET_CONSTANT(&_5, "PHP_EOL");
@@ -679,7 +679,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 	ZVAL_STRING(&_23, "php://stdin");
 	ZEPHIR_INIT_VAR(&_24);
 	ZVAL_STRING(&_24, "r");
-	ZEPHIR_CALL_FUNCTION(&handle, "fopen", NULL, 42, &_23, &_24);
+	ZEPHIR_CALL_FUNCTION(&handle, "fopen", NULL, 43, &_23, &_24);
 	zephir_check_call_status();
 	while (1) {
 		if (!(1)) {
@@ -687,7 +687,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 		}
 		php_printf("%s", "Please select package to download licence: ");
 		ZEPHIR_INIT_NVAR(&_25$$4);
-		ZEPHIR_CALL_FUNCTION(&_26$$4, "fgets", &_27, 43, &handle);
+		ZEPHIR_CALL_FUNCTION(&_26$$4, "fgets", &_27, 44, &handle);
 		zephir_check_call_status();
 		zephir_fast_trim(&_25$$4, &_26$$4, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 		select = zephir_get_intval(&_25$$4);
@@ -710,7 +710,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicenceProcess) {
 			ZEPHIR_OBS_NVAR(&package);
 			zephir_array_fetch_long(&package, &listPackage, (select - 1), PH_NOISY, "saas/Cores/SaasSystem.zep", 213 TSRMLS_CC);
 			zephir_array_fetch_string(&_33$$7, &package, SL("customer_package_id"), PH_NOISY | PH_READONLY, "saas/Cores/SaasSystem.zep", 214 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(NULL, this_ptr, "downloadlicence", &_34, 54, &_33$$7);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "downloadlicence", &_34, 55, &_33$$7);
 			zephir_check_call_status();
 			break;
 		}
@@ -868,7 +868,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicence) {
 	ZVAL_LONG(&_9, zephir_fast_count_int(&fields TSRMLS_CC));
 	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_8, 10, &ch, &_7, &_9);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_10, "http_build_query", NULL, 45, &fields);
+	ZEPHIR_CALL_FUNCTION(&_10, "http_build_query", NULL, 46, &fields);
 	zephir_check_call_status();
 	ZVAL_LONG(&_7, 10015);
 	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_8, 10, &ch, &_7, &_10);
@@ -925,7 +925,7 @@ PHP_METHOD(Saas_Cores_SaasSystem, downloadLicence) {
 	ZEPHIR_CONCAT_SV(&_4, "System will back to main menu in 5 seconds...", &_2);
 	zend_print_zval(&_4, 0);
 	ZVAL_LONG(&_7, 5);
-	ZEPHIR_CALL_FUNCTION(NULL, "sleep", NULL, 55, &_7);
+	ZEPHIR_CALL_FUNCTION(NULL, "sleep", NULL, 56, &_7);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

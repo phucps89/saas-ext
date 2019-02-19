@@ -10,6 +10,7 @@ PHP_METHOD(Saas_Cores_Index, initDms);
 PHP_METHOD(Saas_Cores_Index, initPom);
 PHP_METHOD(Saas_Cores_Index, initWms);
 PHP_METHOD(Saas_Cores_Index, initial);
+PHP_METHOD(Saas_Cores_Index, verifyLicence);
 PHP_METHOD(Saas_Cores_Index, decrypt);
 PHP_METHOD(Saas_Cores_Index, getLicenceId);
 PHP_METHOD(Saas_Cores_Index, getUniqueMachineID);
@@ -49,6 +50,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_saas_cores_index_initial, 0, 0, 1)
 	ZEND_ARG_INFO(0, pathToKey)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_saas_cores_index_verifylicence, 0, 0, 1)
+	ZEND_ARG_INFO(0, licenceId)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_saas_cores_index_decrypt, 0, 0, 2)
 	ZEND_ARG_INFO(0, ivHashCiphertext)
 	ZEND_ARG_INFO(0, password)
@@ -74,6 +79,7 @@ ZEPHIR_INIT_FUNCS(saas_cores_index_method_entry) {
 	PHP_ME(Saas_Cores_Index, initPom, arginfo_saas_cores_index_initpom, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Saas_Cores_Index, initWms, arginfo_saas_cores_index_initwms, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Saas_Cores_Index, initial, arginfo_saas_cores_index_initial, ZEND_ACC_PRIVATE)
+	PHP_ME(Saas_Cores_Index, verifyLicence, arginfo_saas_cores_index_verifylicence, ZEND_ACC_PRIVATE)
 	PHP_ME(Saas_Cores_Index, decrypt, arginfo_saas_cores_index_decrypt, ZEND_ACC_PRIVATE|ZEND_ACC_STATIC)
 	PHP_ME(Saas_Cores_Index, getLicenceId, arginfo_saas_cores_index_getlicenceid, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Saas_Cores_Index, getUniqueMachineID, arginfo_saas_cores_index_getuniquemachineid, ZEND_ACC_PRIVATE)
