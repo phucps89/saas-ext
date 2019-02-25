@@ -42,7 +42,7 @@ PHP_METHOD(saas_0__closure, __invoke) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "ID:");
-	ZEPHIR_CALL_FUNCTION(&_1, "stripos", NULL, 33, line, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "stripos", NULL, 34, line, &_0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(!ZEPHIR_IS_FALSE_IDENTICAL(&_1));
 
