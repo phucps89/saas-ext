@@ -27,7 +27,7 @@ ZEPHIR_INIT_CLASS(Saas_Cores_SaasSystem) {
 
 	ZEPHIR_REGISTER_CLASS(Saas\\Cores, SaasSystem, saas, cores_saassystem, saas_cores_saassystem_method_entry, ZEND_ACC_FINAL_CLASS);
 
-	zend_declare_property_string(saas_cores_saassystem_ce, SL("domain"), "https://apigw2.seldatdirect.com/staging/saas/api", ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_string(saas_cores_saassystem_ce, SL("domain"), "https://apigw2.seldatdirect.com/dev/saas/api", ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	zend_declare_property_null(saas_cores_saassystem_ce, SL("apis"), ZEND_ACC_PRIVATE TSRMLS_CC);
 
