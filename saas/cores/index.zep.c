@@ -46,6 +46,8 @@ ZEPHIR_INIT_CLASS(Saas_Cores_Index) {
 
 	zend_declare_property_string(saas_cores_index_ce, SL("saas_offline_check_licence"), "http://localhost:12345/licence/check", ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
 
+	zend_declare_property_string(saas_cores_index_ce, SL("saas_offline_update_blocking_licence"), "http://localhost:12345/licence/update-blocking", ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
+
 	zend_declare_property_string(saas_cores_index_ce, SL("saas_core_url"), "https://apigw2.seldatdirect.com/dev/saas/api/v1", ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
 
 	zend_declare_property_null(saas_cores_index_ce, SL("application"), ZEND_ACC_PROTECTED TSRMLS_CC);
@@ -136,7 +138,7 @@ PHP_METHOD(Saas_Cores_Index, __construct) {
 		zephir_json_decode(&arrLicencePath, &_8$$7, 0 );
 	}
 	if (!(zephir_fast_in_array(pathToKey, &arrLicencePath TSRMLS_CC))) {
-		zephir_array_append(&arrLicencePath, pathToKey, PH_SEPARATE, "saas/Cores/Index.zep", 50);
+		zephir_array_append(&arrLicencePath, pathToKey, PH_SEPARATE, "saas/Cores/Index.zep", 51);
 		ZEPHIR_INIT_VAR(&_9$$8);
 		zephir_json_encode(&_9$$8, &arrLicencePath, 0 );
 		ZEPHIR_CALL_FUNCTION(&dataLocLicPath, "base64_encode", NULL, 5, &_9$$8);
@@ -241,10 +243,10 @@ PHP_METHOD(Saas_Cores_Index, verifySaasService) {
 		zephir_update_property_zval(this_ptr, SL("isConnected"), &_9$$3);
 	} else {
 		if (ZEPHIR_IS_EMPTY(&httpCode)) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Saas service is not available!!", "saas/Cores/Index.zep", 94);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Saas service is not available!!", "saas/Cores/Index.zep", 95);
 			return;
 		} else {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Saas service veirify failed!!", "saas/Cores/Index.zep", 97);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Saas service veirify failed!!", "saas/Cores/Index.zep", 98);
 			return;
 		}
 	}
@@ -463,7 +465,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 		zephir_read_property(&_5$$3, this_ptr, SL("isConnected"), PH_NOISY_CC | PH_READONLY);
 		if (zephir_is_true(&_5$$3)) {
 			zephir_read_property(&_7$$4, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
-			zephir_array_fetch_string(&_8$$4, &_7$$4, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 148 TSRMLS_CC);
+			zephir_array_fetch_string(&_8$$4, &_7$$4, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 149 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(&_6$$4, this_ptr, "verifylicenceonline", NULL, 18, &_8$$4);
 			zephir_check_call_status_or_jump(try_end_1);
 			if (!zephir_is_true(&_6$$4)) {
@@ -473,13 +475,13 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 				ZVAL_STRING(&_10$$5, "This licence is invalid");
 				ZEPHIR_CALL_METHOD(NULL, &_9$$5, "__construct", &_11, 19, &_10$$5);
 				zephir_check_call_status_or_jump(try_end_1);
-				zephir_throw_exception_debug(&_9$$5, "saas/Cores/Index.zep", 149 TSRMLS_CC);
+				zephir_throw_exception_debug(&_9$$5, "saas/Cores/Index.zep", 150 TSRMLS_CC);
 				goto try_end_1;
 
 			}
 		} else {
 			zephir_read_property(&_13$$6, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
-			zephir_array_fetch_string(&_14$$6, &_13$$6, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 153 TSRMLS_CC);
+			zephir_array_fetch_string(&_14$$6, &_13$$6, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 154 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(&_12$$6, this_ptr, "verifylicenceoffline", NULL, 20, &_14$$6);
 			zephir_check_call_status_or_jump(try_end_1);
 			if (!zephir_is_true(&_12$$6)) {
@@ -489,13 +491,13 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 				ZVAL_STRING(&_16$$7, "This licence is invalid");
 				ZEPHIR_CALL_METHOD(NULL, &_15$$7, "__construct", &_11, 19, &_16$$7);
 				zephir_check_call_status_or_jump(try_end_1);
-				zephir_throw_exception_debug(&_15$$7, "saas/Cores/Index.zep", 154 TSRMLS_CC);
+				zephir_throw_exception_debug(&_15$$7, "saas/Cores/Index.zep", 155 TSRMLS_CC);
 				goto try_end_1;
 
 			}
 		}
 		zephir_read_property(&_17$$3, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_18$$3, &_17$$3, SL("service_code"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 159 TSRMLS_CC);
+		zephir_array_fetch_string(&_18$$3, &_17$$3, SL("service_code"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 160 TSRMLS_CC);
 		if (!ZEPHIR_IS_EQUAL(&_18$$3, &moduleName)) {
 			ZEPHIR_INIT_VAR(&_19$$8);
 			object_init_ex(&_19$$8, saas_cores_exceptions_licenceinvalidexception_ce);
@@ -503,7 +505,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 			ZVAL_STRING(&_20$$8, "This licence can not apply to this product");
 			ZEPHIR_CALL_METHOD(NULL, &_19$$8, "__construct", &_11, 19, &_20$$8);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_throw_exception_debug(&_19$$8, "saas/Cores/Index.zep", 160 TSRMLS_CC);
+			zephir_throw_exception_debug(&_19$$8, "saas/Cores/Index.zep", 161 TSRMLS_CC);
 			goto try_end_1;
 
 		}
@@ -513,7 +515,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 		zephir_check_call_status_or_jump(try_end_1);
 		zephir_read_property(&_22$$3, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&expire);
-		zephir_array_fetch_string(&expire, &_22$$3, SL("expired"), PH_NOISY, "saas/Cores/Index.zep", 164 TSRMLS_CC);
+		zephir_array_fetch_string(&expire, &_22$$3, SL("expired"), PH_NOISY, "saas/Cores/Index.zep", 165 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(&_21$$3);
 		object_init_ex(&_21$$3, php_date_get_date_ce());
 		ZEPHIR_CALL_METHOD(NULL, &_21$$3, "__construct", NULL, 0, &expire);
@@ -532,7 +534,7 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 			zephir_read_property(&_26$$9, &app, SL("licence_config"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(NULL, &_25$$9, "__construct", NULL, 23, &_26$$9);
 			zephir_check_call_status_or_jump(try_end_1);
-			zephir_throw_exception_debug(&_25$$9, "saas/Cores/Index.zep", 172 TSRMLS_CC);
+			zephir_throw_exception_debug(&_25$$9, "saas/Cores/Index.zep", 173 TSRMLS_CC);
 			goto try_end_1;
 
 		}
@@ -547,22 +549,22 @@ PHP_METHOD(Saas_Cores_Index, initial) {
 			zend_clear_exception(TSRMLS_C);
 			ZEPHIR_CPY_WRT(&e, &_27);
 			if (zephir_instance_of_ev(&e, saas_cores_exceptions_licenceexception_ce TSRMLS_CC)) {
-				zephir_throw_exception_debug(&e, "saas/Cores/Index.zep", 176 TSRMLS_CC);
+				zephir_throw_exception_debug(&e, "saas/Cores/Index.zep", 177 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
 				return;
 			}
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 178);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 179);
 			return;
 		} else {
 			if (zephir_instance_of_ev(&_27, zend_exception_get_default(TSRMLS_C) TSRMLS_CC)) {
 				zend_clear_exception(TSRMLS_C);
 				ZEPHIR_CPY_WRT(&e, &_27);
 				if (zephir_instance_of_ev(&e, saas_cores_exceptions_licenceexception_ce TSRMLS_CC)) {
-					zephir_throw_exception_debug(&e, "saas/Cores/Index.zep", 176 TSRMLS_CC);
+					zephir_throw_exception_debug(&e, "saas/Cores/Index.zep", 177 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
 					return;
 				}
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 178);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "Can not parse licence", "saas/Cores/Index.zep", 179);
 				return;
 			}
 		}
@@ -669,6 +671,8 @@ PHP_METHOD(Saas_Cores_Index, verifyLicenceOnline) {
 		ZEPHIR_OBS_VAR(&licenceData$$3);
 		zephir_read_property_zval(&licenceData$$3, &_9$$3, &tmp$$3, PH_NOISY_CC);
 		if (Z_TYPE_P(&licenceData$$3) != IS_NULL) {
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "updateblockinglicence", NULL, 24, &tmp$$3, &licenceData$$3);
+			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_10$$4);
 			zephir_read_property(&_11$$4, &licenceData$$3, SL("sts"), PH_NOISY_CC | PH_READONLY);
 			zephir_fast_strtolower(&_10$$4, &_11$$4);
@@ -687,6 +691,92 @@ PHP_METHOD(Saas_Cores_Index, verifyLicenceOnline) {
 	} else {
 		RETURN_MM_BOOL(0);
 	}
+
+}
+
+PHP_METHOD(Saas_Cores_Index, updateBlockingLicence) {
+
+	zephir_fcall_cache_entry *_6 = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *licenceId, licenceId_sub, *licenceData, licenceData_sub, __$true, headers, ch, result, httpCode, fields, payload, salt, pwverify, _0, _1, _2, _3, _4, _5;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&licenceId_sub);
+	ZVAL_UNDEF(&licenceData_sub);
+	ZVAL_BOOL(&__$true, 1);
+	ZVAL_UNDEF(&headers);
+	ZVAL_UNDEF(&ch);
+	ZVAL_UNDEF(&result);
+	ZVAL_UNDEF(&httpCode);
+	ZVAL_UNDEF(&fields);
+	ZVAL_UNDEF(&payload);
+	ZVAL_UNDEF(&salt);
+	ZVAL_UNDEF(&pwverify);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_5);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &licenceId, &licenceData);
+
+
+
+	ZEPHIR_INIT_VAR(&headers);
+	zephir_create_array(&headers, 3, 0 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&_0);
+	ZVAL_STRING(&_0, "Accept: application/json");
+	zephir_array_fast_append(&headers, &_0);
+	ZEPHIR_INIT_NVAR(&_0);
+	ZVAL_STRING(&_0, "Content: application/json");
+	zephir_array_fast_append(&headers, &_0);
+	ZEPHIR_INIT_NVAR(&_0);
+	ZVAL_STRING(&_0, "Content-Type: application/json");
+	zephir_array_fast_append(&headers, &_0);
+	ZEPHIR_CALL_FUNCTION(&ch, "curl_init", NULL, 7);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&salt, this_ptr, "randomstring", NULL, 8);
+	zephir_check_call_status();
+	zephir_read_static_property_ce(&_1, saas_cores_index_ce, SL("saas_password_encrypt"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_2);
+	ZEPHIR_CONCAT_SVS(&_2, "$2a$07$", &salt, "forsalt$");
+	ZEPHIR_CALL_FUNCTION(&pwverify, "crypt", NULL, 9, &_1, &_2);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&fields);
+	zephir_create_array(&fields, 3, 0 TSRMLS_CC);
+	zephir_array_update_string(&fields, SL("verify"), &pwverify, PH_COPY | PH_SEPARATE);
+	zephir_array_update_string(&fields, SL("licence_id"), licenceId, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_VAR(&_3);
+	zephir_read_property(&_3, licenceData, SL("sts"), PH_NOISY_CC);
+	zephir_array_update_string(&fields, SL("sts"), &_3, PH_COPY | PH_SEPARATE);
+	ZEPHIR_INIT_VAR(&payload);
+	zephir_json_encode(&payload, &fields, 0 );
+	zephir_read_static_property_ce(&_4, saas_cores_index_ce, SL("saas_offline_update_blocking_licence"), PH_NOISY_CC | PH_READONLY);
+	ZVAL_LONG(&_5, 10002);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 10, &ch, &_5, &_4);
+	zephir_check_call_status();
+	ZVAL_LONG(&_5, 10023);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 10, &ch, &_5, &headers);
+	zephir_check_call_status();
+	ZVAL_LONG(&_5, 19913);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 10, &ch, &_5, &__$true);
+	zephir_check_call_status();
+	ZVAL_LONG(&_5, 10015);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 10, &ch, &_5, &payload);
+	zephir_check_call_status();
+	ZEPHIR_CALL_FUNCTION(&result, "curl_exec", NULL, 11, &ch);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(&_0);
+	zephir_json_decode(&_0, &result, 0 );
+	ZEPHIR_CPY_WRT(&result, &_0);
+	ZVAL_LONG(&_5, 2097154);
+	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 12, &ch, &_5);
+	zephir_check_call_status();
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 13, &ch);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -763,7 +853,7 @@ PHP_METHOD(Saas_Cores_Index, verifyLicenceOffline) {
 		}
 		RETURN_MM_BOOL(1);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "An error has occured when checking licence offline", "saas/Cores/Index.zep", 260);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(saas_cores_exceptions_licenceinvalidexception_ce, "An error has occured when checking licence offline", "saas/Cores/Index.zep", 295);
 		return;
 	}
 
@@ -812,17 +902,17 @@ PHP_METHOD(Saas_Cores_Index, decrypt) {
 	zephir_substr(&ciphertext, ivHashCiphertext, 48 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
 	ZEPHIR_INIT_VAR(&_5);
 	ZVAL_STRING(&_5, "sha256");
-	ZEPHIR_CALL_FUNCTION(&key, "hash", NULL, 24, &_5, password, &__$true);
+	ZEPHIR_CALL_FUNCTION(&key, "hash", NULL, 25, &_5, password, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_5);
 	ZVAL_STRING(&_5, "sha256");
-	ZEPHIR_CALL_FUNCTION(&_6, "hash_hmac", NULL, 25, &_5, &ciphertext, &key, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_6, "hash_hmac", NULL, 26, &_5, &ciphertext, &key, &__$true);
 	zephir_check_call_status();
 	if (!ZEPHIR_IS_IDENTICAL(&_6, &hash)) {
 		RETURN_MM_NULL();
 	}
 	ZVAL_LONG(&_7, 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 26, &ciphertext, &method, &key, &_7, &iv);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 27, &ciphertext, &method, &key, &_7, &iv);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -861,7 +951,7 @@ PHP_METHOD(Saas_Cores_Index, getLicenceId) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&config);
 	zephir_json_decode(&config, &_3, zephir_get_intval(&__$true) );
-	zephir_array_fetch_string(&_4, &config, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 295 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &config, SL("licence_id"), PH_NOISY | PH_READONLY, "saas/Cores/Index.zep", 330 TSRMLS_CC);
 	RETURN_CTOR(&_4);
 
 }
@@ -917,13 +1007,13 @@ PHP_METHOD(Saas_Cores_Index, getUniqueMachineID) {
 	zephir_substr(&_4, &_1, 0 , 3 , 0);
 	zephir_fast_strtoupper(&_0, &_4);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_0, "WIN")) {
-		ZEPHIR_CALL_FUNCTION(&_5$$3, "sys_get_temp_dir", NULL, 27);
+		ZEPHIR_CALL_FUNCTION(&_5$$3, "sys_get_temp_dir", NULL, 28);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&temp$$3);
 		ZEPHIR_CONCAT_VSS(&temp$$3, &_5$$3, "/", "diskpartscript.txt");
 		_6$$3 = !((zephir_file_exists(&temp$$3 TSRMLS_CC) == SUCCESS));
 		if (_6$$3) {
-			ZEPHIR_CALL_FUNCTION(&_7$$3, "is_file", NULL, 28, &temp$$3);
+			ZEPHIR_CALL_FUNCTION(&_7$$3, "is_file", NULL, 29, &temp$$3);
 			zephir_check_call_status();
 			_6$$3 = !zephir_is_true(&_7$$3);
 		}
@@ -934,27 +1024,27 @@ PHP_METHOD(Saas_Cores_Index, getUniqueMachineID) {
 		}
 		ZEPHIR_INIT_VAR(&_9$$3);
 		ZEPHIR_CONCAT_SV(&_9$$3, "diskpart /s ", &temp$$3);
-		ZEPHIR_CALL_FUNCTION(&output$$3, "shell_exec", &_10, 29, &_9$$3);
+		ZEPHIR_CALL_FUNCTION(&output$$3, "shell_exec", &_10, 30, &_9$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&lines$$3);
 		zephir_fast_explode_str(&lines$$3, SL("\n"), &output$$3, LONG_MAX TSRMLS_CC);
 		ZEPHIR_INIT_VAR(&_11$$3);
 		ZEPHIR_INIT_NVAR(&_11$$3);
 		zephir_create_closure_ex(&_11$$3, NULL, saas_0__closure_ce, SL("__invoke"));
-		ZEPHIR_CALL_FUNCTION(&result, "array_filter", NULL, 30, &lines$$3, &_11$$3);
+		ZEPHIR_CALL_FUNCTION(&result, "array_filter", NULL, 31, &lines$$3, &_11$$3);
 		zephir_check_call_status();
 		if (zephir_fast_count_int(&result TSRMLS_CC) > 0) {
-			ZEPHIR_CALL_FUNCTION(&_12$$5, "array_values", NULL, 31, &result);
+			ZEPHIR_CALL_FUNCTION(&_12$$5, "array_values", NULL, 32, &result);
 			zephir_check_call_status();
 			ZEPHIR_MAKE_REF(&_12$$5);
-			ZEPHIR_CALL_FUNCTION(&result, "array_shift", NULL, 32, &_12$$5);
+			ZEPHIR_CALL_FUNCTION(&result, "array_shift", NULL, 33, &_12$$5);
 			ZEPHIR_UNREF(&_12$$5);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_13$$5);
 			zephir_fast_explode_str(&_13$$5, SL(":"), &result, LONG_MAX TSRMLS_CC);
 			ZEPHIR_CPY_WRT(&result, &_13$$5);
 			ZEPHIR_MAKE_REF(&result);
-			ZEPHIR_CALL_FUNCTION(&_14$$5, "end", NULL, 33, &result);
+			ZEPHIR_CALL_FUNCTION(&_14$$5, "end", NULL, 34, &result);
 			ZEPHIR_UNREF(&result);
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(&result);
@@ -965,22 +1055,22 @@ PHP_METHOD(Saas_Cores_Index, getUniqueMachineID) {
 	} else {
 		ZEPHIR_INIT_VAR(&_15$$7);
 		ZVAL_STRING(&_15$$7, "blkid -o value -s UUID");
-		ZEPHIR_CALL_FUNCTION(&result, "shell_exec", &_10, 29, &_15$$7);
+		ZEPHIR_CALL_FUNCTION(&result, "shell_exec", &_10, 30, &_15$$7);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_15$$7);
 		ZVAL_STRING(&_15$$7, "blkid");
-		ZEPHIR_CALL_FUNCTION(&_16$$7, "stripos", NULL, 34, &result, &_15$$7);
+		ZEPHIR_CALL_FUNCTION(&_16$$7, "stripos", NULL, 35, &result, &_15$$7);
 		zephir_check_call_status();
 		if (!ZEPHIR_IS_FALSE_IDENTICAL(&_16$$7)) {
 			ZEPHIR_OBS_NVAR(&result);
-			zephir_array_fetch_string(&result, _SERVER, SL("HTTP_HOST"), PH_NOISY, "saas/Cores/Index.zep", 321 TSRMLS_CC);
+			zephir_array_fetch_string(&result, _SERVER, SL("HTTP_HOST"), PH_NOISY, "saas/Cores/Index.zep", 356 TSRMLS_CC);
 		}
 	}
 	ZEPHIR_INIT_VAR(&_17);
 	zephir_md5(&_17, &result);
 	ZEPHIR_INIT_VAR(&_18);
 	ZEPHIR_CONCAT_VV(&_18, salt, &_17);
-	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 35, &_18);
+	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 36, &_18);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -1029,7 +1119,7 @@ PHP_METHOD(Saas_Cores_Index, randomString) {
 		}
 		ZEPHIR_INIT_NVAR(&size);
 		zephir_sub_function(&size, length, &len);
-		ZEPHIR_CALL_FUNCTION(&bytes, "random_bytes", &_0, 36, &size);
+		ZEPHIR_CALL_FUNCTION(&bytes, "random_bytes", &_0, 37, &size);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_1$$3);
 		ZEPHIR_INIT_NVAR(&_2$$3);

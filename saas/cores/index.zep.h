@@ -11,6 +11,7 @@ PHP_METHOD(Saas_Cores_Index, initPom);
 PHP_METHOD(Saas_Cores_Index, initWms);
 PHP_METHOD(Saas_Cores_Index, initial);
 PHP_METHOD(Saas_Cores_Index, verifyLicenceOnline);
+PHP_METHOD(Saas_Cores_Index, updateBlockingLicence);
 PHP_METHOD(Saas_Cores_Index, verifyLicenceOffline);
 PHP_METHOD(Saas_Cores_Index, decrypt);
 PHP_METHOD(Saas_Cores_Index, getLicenceId);
@@ -55,6 +56,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_saas_cores_index_verifylicenceonline, 0, 0, 1)
 	ZEND_ARG_INFO(0, licenceId)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_saas_cores_index_updateblockinglicence, 0, 0, 2)
+	ZEND_ARG_INFO(0, licenceId)
+	ZEND_ARG_INFO(0, licenceData)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_saas_cores_index_verifylicenceoffline, 0, 0, 1)
 	ZEND_ARG_INFO(0, licenceId)
 ZEND_END_ARG_INFO()
@@ -85,6 +91,7 @@ ZEPHIR_INIT_FUNCS(saas_cores_index_method_entry) {
 	PHP_ME(Saas_Cores_Index, initWms, arginfo_saas_cores_index_initwms, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Saas_Cores_Index, initial, arginfo_saas_cores_index_initial, ZEND_ACC_PRIVATE)
 	PHP_ME(Saas_Cores_Index, verifyLicenceOnline, arginfo_saas_cores_index_verifylicenceonline, ZEND_ACC_PRIVATE)
+	PHP_ME(Saas_Cores_Index, updateBlockingLicence, arginfo_saas_cores_index_updateblockinglicence, ZEND_ACC_PRIVATE)
 	PHP_ME(Saas_Cores_Index, verifyLicenceOffline, arginfo_saas_cores_index_verifylicenceoffline, ZEND_ACC_PRIVATE)
 	PHP_ME(Saas_Cores_Index, decrypt, arginfo_saas_cores_index_decrypt, ZEND_ACC_PRIVATE|ZEND_ACC_STATIC)
 	PHP_ME(Saas_Cores_Index, getLicenceId, arginfo_saas_cores_index_getlicenceid, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
