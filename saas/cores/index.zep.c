@@ -48,7 +48,7 @@ ZEPHIR_INIT_CLASS(Saas_Cores_Index) {
 
 	zend_declare_property_string(saas_cores_index_ce, SL("saas_offline_update_blocking_licence"), "http://localhost:12345/licence/update-blocking", ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
 
-	zend_declare_property_string(saas_cores_index_ce, SL("saas_core_url"), "https://apigw2.seldatdirect.com/dev/saas/api/v1", ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
+	zend_declare_property_string(saas_cores_index_ce, SL("saas_core_url"), "https://apigw-live1.seldatdirect.com/live/saas/api/v1", ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
 
 	zend_declare_property_null(saas_cores_index_ce, SL("application"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -56,7 +56,7 @@ ZEPHIR_INIT_CLASS(Saas_Cores_Index) {
 
 	zend_declare_property_bool(saas_cores_index_ce, SL("isConnected"), 0, ZEND_ACC_PRIVATE TSRMLS_CC);
 
-	zend_declare_property_string(saas_cores_index_ce, SL("saas_verify_token"), "4e44bca337a723734e32404e7bf7ac87c9bc378113485dce5c614503422fe845b30b000d9bde812bb9d307a376be1ab3ec58fda1e1024c36cd1ceec42bd0dc52fbedf3a2ecec69253ecdae6fb9de11c6", ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_string(saas_cores_index_ce, SL("saas_verify_token"), "b923b2bed8c7f970f98a50bc54c7f928b1fb3c7ef04e107beec184f0fab3543f664d96c512d6636e24b575649e0bf2318db0d382072bddbee7507886de141489fe3d3a7a52af78f369f158842526061a", ZEND_ACC_PRIVATE TSRMLS_CC);
 
 	return SUCCESS;
 
